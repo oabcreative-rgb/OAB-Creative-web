@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1.125rem;
+  box-shadow: var(--shadow-card);
+  min-width: 180px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--gradient-brand);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/*
+  Specificity note: ".card .label"/".card .value" (not just ".label"/
+  ".value") is intentional — the card is white regardless of what section
+  it floats over, but a global rule like ".dark-section p" would otherwise
+  win on specificity and wash these out to the on-dark muted color.
+*/
+.card .label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.card .value {
+  margin: 0.125rem 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.trend {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1a9c6a;
+}

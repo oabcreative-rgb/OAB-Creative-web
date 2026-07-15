@@ -1,0 +1,136 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  color: var(--color-text);
+}
+
+.brandInner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  transform-origin: left center;
+}
+
+.brand strong {
+  font-weight: 700;
+}
+
+.brandMark {
+  object-fit: contain;
+  display: block;
+}
+
+.navDesktop {
+  display: none;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navLink {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.navLink.active {
+  color: var(--color-text);
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+.menuButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.barOpenTop {
+  composes: bar;
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barOpenMid {
+  composes: bar;
+  opacity: 0;
+}
+
+.barOpenBottom {
+  composes: bar;
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileMenu {
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+
+.mobileInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-3);
+}
+
+.mobileLink {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  color: var(--color-text);
+}
+
+@media (min-width: 900px) {
+  .navDesktop {
+    display: flex;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
