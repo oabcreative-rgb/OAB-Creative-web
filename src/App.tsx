@@ -22,15 +22,28 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 
 function PageWrapper({ children }: { children: ReactNode }) {
+  const { hash } = useLocation();
+
   // Runs once per route mount. With AnimatePresence mode="wait" the old page
   // finishes its exit fade before this mounts, so the jump to top lands
   // exactly as the new page starts fading in — not mid-exit on the old one.
   // `behavior: "instant"` is required (not "auto") because the global
   // `scroll-behavior: smooth` (global.css) also applies to plain scrollTo
   // calls in Chromium — "auto" would still animate.
+  //
+  // A link that targets an in-page anchor (e.g. /portfolio#motion-design)
+  // skips the top-jump and smooth-scrolls to that section instead, once it
+  // exists in the DOM.
   useLayoutEffect(() => {
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, []);
+  }, [hash]);
 
   return (
     <motion.main

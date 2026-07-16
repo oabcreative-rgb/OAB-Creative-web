@@ -104,8 +104,8 @@ export default function Home() {
               <Button to="/contact" variant="primary">
                 Start a Project
               </Button>
-              <Button to="/services" variant="secondary">
-                View Services
+              <Button to="/portfolio#motion-design" variant="secondary">
+                View Motion Portfolio
               </Button>
             </div>
           </motion.div>

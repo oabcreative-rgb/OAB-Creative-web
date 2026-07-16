@@ -28,6 +28,12 @@
   max-width: 600px;
 }
 
+.anchorTarget {
+  /* Offsets the sticky navbar (~76px expanded) so an anchor-linked section
+     doesn't land tucked under it. */
+  scroll-margin-top: 92px;
+}
+
 .categoryHeader {
   position: relative;
   z-index: 1;

@@ -95,7 +95,12 @@ export default function Portfolio() {
 
       {portfolioCategories.map((category) => (
         <Fragment key={category.id}>
-          <section className={`section ${categoryBackground[category.id]}`.trim()}>
+          <section
+            id={category.id === "motion-design" ? "motion-design" : undefined}
+            className={`section ${categoryBackground[category.id]} ${
+              category.id === "motion-design" ? styles.anchorTarget : ""
+            }`.trim()}
+          >
             <div className="container">
               <div className={styles.categoryHeader}>
                 <span className={styles.categoryIcon}>{categoryIcons[category.id]}</span>
