@@ -1,5 +1,5 @@
 import { useLayoutEffect, type ReactNode } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -19,7 +19,7 @@ import CaseStudyLumora from "./pages/CaseStudyLumora";
 import CaseStudyNordiq from "./pages/CaseStudyNordiq";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
-import Contact from "./pages/Contact";
+import StartAProject from "./pages/StartAProject";
 
 function PageWrapper({ children }: { children: ReactNode }) {
   const { hash } = useLocation();
@@ -114,7 +114,9 @@ export default function App() {
           />
           <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
           <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
-          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="/start-a-project" element={<PageWrapper><StartAProject /></PageWrapper>} />
+          {/* Legacy URL — keeps old links/bookmarks working. */}
+          <Route path="/contact" element={<Navigate to="/start-a-project" replace />} />
         </Routes>
       </AnimatePresence>
       <Footer />

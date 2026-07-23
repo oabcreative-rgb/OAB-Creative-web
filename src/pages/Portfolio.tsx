@@ -167,7 +167,7 @@ export default function Portfolio() {
             title="Tell us about your project and we'll show you samples that match."
           />
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button to="/contact" variant="primary">
+            <Button to="/start-a-project" variant="primary">
               Contact Us
             </Button>
           </div>

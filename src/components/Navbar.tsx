@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import logo from "../assets/logo.png";
 import Button from "./Button";
+import BookingButton from "./BookingButton";
 import styles from "./Navbar.module.css";
 
 const links = [
@@ -97,8 +98,9 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.navDesktop}>
-          <Button to="/contact" variant="primary">
-            Contact Us
+          <BookingButton variant="secondary">Book a Call</BookingButton>
+          <Button to="/start-a-project" variant="primary">
+            Start a Project
           </Button>
         </div>
 
@@ -135,8 +137,11 @@ export default function Navbar() {
                   {link.label}
                 </NavLink>
               ))}
-              <Button to="/contact" variant="primary" onClick={() => setOpen(false)}>
-                Contact Us
+              <BookingButton variant="secondary" onOpen={() => setOpen(false)}>
+                Book a Call
+              </BookingButton>
+              <Button to="/start-a-project" variant="primary" onClick={() => setOpen(false)}>
+                Start a Project
               </Button>
             </div>
           </motion.nav>

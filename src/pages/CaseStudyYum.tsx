@@ -186,7 +186,7 @@ export default function CaseStudyYum() {
             <h2>Launching a brand that needs to feel this fun?</h2>
             <p>Tell us about your business and we'll show you how a campaign like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

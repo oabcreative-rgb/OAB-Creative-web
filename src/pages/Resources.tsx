@@ -23,7 +23,7 @@ export default function Resources() {
             websites — the kind that help you attract more clients and grow with confidence.
             Check back soon, or reach out directly if you have a question in the meantime.
           </p>
-          <Button to="/contact" variant="primary">
+          <Button to="/start-a-project" variant="primary">
             Get in Touch
           </Button>
         </motion.div>

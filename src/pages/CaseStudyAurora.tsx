@@ -214,7 +214,7 @@ export default function CaseStudyAurora() {
             <h2>Launching a product that needs to feel premium on day one?</h2>
             <p>Tell us about your launch and we'll show you how a campaign film like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

@@ -186,7 +186,7 @@ export default function CaseStudyALTSWebsite() {
             <h2>Need a website that actually books clients?</h2>
             <p>Tell us about your business and we'll show you how a site like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

@@ -223,6 +223,15 @@ export function IconPinterest(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconClose(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M6 6l12 12" />
+      <path d="M18 6 6 18" />
+    </svg>
+  );
+}
+
 export function IconLinkedIn(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...props}>

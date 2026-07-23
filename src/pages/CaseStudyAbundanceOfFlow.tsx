@@ -186,7 +186,7 @@ export default function CaseStudyAbundanceOfFlow() {
             <h2>Running multiple services and need one credible brand?</h2>
             <p>Tell us about your business and we'll show you how a unified system like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

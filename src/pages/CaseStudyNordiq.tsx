@@ -215,7 +215,7 @@ export default function CaseStudyNordiq() {
             <h2>Got a physical product that needs one strong idea to sell it?</h2>
             <p>Tell us about your product and we'll show you how a concept film like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

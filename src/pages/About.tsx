@@ -180,7 +180,7 @@ export default function About() {
             title="Ready to build a brand that wins more clients?"
           />
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button to="/contact" variant="primary">
+            <Button to="/start-a-project" variant="primary">
               Start a Project
             </Button>
           </div>

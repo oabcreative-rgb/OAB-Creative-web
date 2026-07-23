@@ -186,7 +186,7 @@ export default function CaseStudyMirror() {
             <h2>Building a product and need a brand to match?</h2>
             <p>Tell us about your launch and we'll show you how a brand like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

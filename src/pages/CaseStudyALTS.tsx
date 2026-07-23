@@ -182,7 +182,7 @@ export default function CaseStudyALTS() {
             <h2>Want a brand this consistent?</h2>
             <p>Tell us about your business and we'll show you how a unified system could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

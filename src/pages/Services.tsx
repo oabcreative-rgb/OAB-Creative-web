@@ -144,7 +144,7 @@ export default function Services() {
             title="Let's find the right starting point for your growth."
           />
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button to="/contact" variant="primary">
+            <Button to="/start-a-project" variant="primary">
               Start a Project
             </Button>
           </div>

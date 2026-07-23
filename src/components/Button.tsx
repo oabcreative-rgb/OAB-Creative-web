@@ -11,6 +11,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   external?: boolean;
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -21,18 +22,26 @@ export default function Button({
   onClick,
   type = "button",
   external = false,
+  disabled = false,
 }: ButtonProps) {
   const className = `${styles.button} ${styles[variant]}`;
 
-  const motionProps = {
-    whileHover: { scale: 1.03 },
-    whileTap: { scale: 0.97 },
-  };
+  const motionProps = disabled
+    ? {}
+    : {
+        whileHover: { scale: 1.03 },
+        whileTap: { scale: 0.97 },
+      };
 
   if (to) {
     return (
       <motion.div {...motionProps} style={{ display: "inline-block" }}>
-        <Link to={to} className={className} onClick={onClick}>
+        <Link
+          to={to}
+          className={className}
+          aria-disabled={disabled || undefined}
+          onClick={disabled ? (e) => e.preventDefault() : onClick}
+        >
           {children}
         </Link>
       </motion.div>
@@ -42,10 +51,11 @@ export default function Button({
   if (href) {
     return (
       <motion.a
-        href={href}
+        href={disabled ? undefined : href}
         className={className}
         target={external ? "_blank" : undefined}
         rel={external ? "noreferrer" : undefined}
+        aria-disabled={disabled || undefined}
         {...motionProps}
       >
         {children}
@@ -54,7 +64,13 @@ export default function Button({
   }
 
   return (
-    <motion.button type={type} className={className} onClick={onClick} {...motionProps}>
+    <motion.button
+      type={type}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      {...motionProps}
+    >
       {children}
     </motion.button>
   );

@@ -186,7 +186,7 @@ export default function CaseStudySwiftDrop() {
             <h2>Need a brand that holds up everywhere it shows up?</h2>
             <p>Tell us about your business and we'll show you how a system like this could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">

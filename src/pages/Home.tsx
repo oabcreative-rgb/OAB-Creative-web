@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { motion } from "motion/react";
 import Button from "../components/Button";
+import BookingButton from "../components/BookingButton";
 import SectionHeading from "../components/SectionHeading";
 import ServiceCard from "../components/ServiceCard";
 import StatCard from "../components/StatCard";
@@ -17,6 +18,7 @@ import {
   IconTarget,
   IconTrendUp,
   IconStar,
+  IconCalendar,
 } from "../components/icons";
 import styles from "./Home.module.css";
 
@@ -101,7 +103,7 @@ export default function Home() {
               high-converting websites, and premium motion design.
             </p>
             <div className={styles.heroActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio#motion-design" variant="secondary">
@@ -243,13 +245,40 @@ export default function Home() {
                 more clients and grow with confidence.
               </p>
               <div className={styles.ctaActions}>
-                <Button to="/contact" variant="primary">
+                <Button to="/start-a-project" variant="primary">
                   Start a Project
                 </Button>
                 <Button to="/portfolio" variant="secondary">
                   See Our Portfolio
                 </Button>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="section bg-mesh-alt">
+        <div className="container">
+          <motion.div
+            className={styles.bookingSection}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <span className={styles.bookingIcon}>
+              <IconCalendar />
+            </span>
+            <h2>Ready to build something remarkable?</h2>
+            <p>
+              Book a short discovery call to discuss your business, goals, and how OAB Creative
+              can help.
+            </p>
+            <div className={styles.bookingActions}>
+              <BookingButton variant="primary">Book a Discovery Call</BookingButton>
+              <Button to="/start-a-project" variant="secondary">
+                Start a Project
+              </Button>
             </div>
           </motion.div>
         </div>

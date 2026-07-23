@@ -186,7 +186,7 @@ export default function CaseStudyHadassah() {
             <h2>Launching a business and need a brand fast?</h2>
             <p>Tell us about your business and we'll show you how a launch-ready brand could look.</p>
             <div className={styles.ctaActions}>
-              <Button to="/contact" variant="primary">
+              <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
               <Button to="/portfolio" variant="secondary">
