@@ -9,7 +9,7 @@
  * Example:
  *   export const BOOKING_URL = "https://calendly.com/your-team/discovery-call";
  */
-export const BOOKING_URL = "INSERT_BOOKING_LINK_HERE";
+export const BOOKING_URL = "https://calendly.com/oabcreativebranding/30min";
 
 /** True once BOOKING_URL has been replaced with a real scheduling link. */
 export function isBookingConfigured(): boolean {

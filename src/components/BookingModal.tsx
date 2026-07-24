@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import Button from "./Button";
@@ -13,6 +13,7 @@ interface BookingModalProps {
 
 export default function BookingModal({ open, onClose }: BookingModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -20,6 +21,7 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
+    setIframeLoaded(false);
 
     function handleKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -72,7 +74,21 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
 
             {configured ? (
               <>
-                <iframe src={BOOKING_URL} title="Book a discovery call" className={styles.iframe} />
+                <div className={styles.iframeWrap}>
+                  {!iframeLoaded && (
+                    <div className={styles.iframeLoading} aria-live="polite">
+                      <span className={styles.spinner} aria-hidden="true" />
+                      <span>Loading calendar…</span>
+                    </div>
+                  )}
+                  <iframe
+                    src={BOOKING_URL}
+                    title="Book a discovery call"
+                    className={styles.iframe}
+                    style={{ opacity: iframeLoaded ? 1 : 0 }}
+                    onLoad={() => setIframeLoaded(true)}
+                  />
+                </div>
                 <a href={BOOKING_URL} target="_blank" rel="noreferrer" className={styles.newTabLink}>
                   Having trouble viewing the calendar? Open it in a new tab ↗
                 </a>
