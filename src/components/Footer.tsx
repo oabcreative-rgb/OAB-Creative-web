@@ -82,7 +82,7 @@ export default function Footer() {
 
       <div className={`container ${styles.bottom}`}>
         <span>© {new Date().getFullYear()} OAB Creative. All rights reserved.</span>
-        <span className={styles.line}>Brands built to earn trust.</span>
+        <span className={styles.line}>Creative solutions that help businesses build trust, stand out and grow.</span>
       </div>
     </footer>
   );

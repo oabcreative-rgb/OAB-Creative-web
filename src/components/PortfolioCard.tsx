@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { IconPlay } from "./icons";
+import { trackEvent } from "../config/analytics";
 import styles from "./PortfolioCard.module.css";
 
 interface PortfolioCardProps {
@@ -72,7 +73,11 @@ export default function PortfolioCard({
       whileHover={{ y: -6 }}
     >
       {link ? (
-        <Link to={link} className={styles.mediaWrap}>
+        <Link
+          to={link}
+          className={styles.mediaWrap}
+          onClick={() => trackEvent("portfolio_project_open", { title: title ?? category })}
+        >
           {mediaContent}
         </Link>
       ) : (

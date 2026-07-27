@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/abundanceofflow/aof-showcase.jpg";
 import brandBoard from "../assets/portfolio/abundanceofflow/aof-brand-board.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudyAbundanceOfFlow() {
   return (
     <>
+      <Seo
+        title="Abundance of Flow — Case Study"
+        description="A full brand system for a multi-service testing and notary company — built to feel trustworthy across a reception desk, a staff uniform and a stack of service flyers."
+        path="/portfolio/abundance-of-flow"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Abundance of Flow", path: "/portfolio/abundance-of-flow" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -174,6 +187,8 @@ export default function CaseStudyAbundanceOfFlow() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/abundance-of-flow" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -191,6 +206,9 @@ export default function CaseStudyAbundanceOfFlow() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/brand-identity" variant="ghost">
+                Explore Brand Identity →
               </Button>
             </div>
           </motion.div>

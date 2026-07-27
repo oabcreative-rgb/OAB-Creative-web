@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
+import ServicePage from "./pages/ServicePage";
+import IndustryMedSpa from "./pages/IndustryMedSpa";
 import Portfolio from "./pages/Portfolio";
 import CaseStudyALTS from "./pages/CaseStudyALTS";
 import CaseStudyHadassah from "./pages/CaseStudyHadassah";
@@ -19,6 +21,7 @@ import CaseStudyLumora from "./pages/CaseStudyLumora";
 import CaseStudyNordiq from "./pages/CaseStudyNordiq";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
+import ResourceArticle from "./pages/ResourceArticle";
 import StartAProject from "./pages/StartAProject";
 
 function PageWrapper({ children }: { children: ReactNode }) {
@@ -67,6 +70,11 @@ export default function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
           <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+          <Route path="/services/:slug" element={<PageWrapper><ServicePage /></PageWrapper>} />
+          <Route
+            path="/industries/med-spa-website-design"
+            element={<PageWrapper><IndustryMedSpa /></PageWrapper>}
+          />
           <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
           <Route
             path="/portfolio/affordable-lab-testing-solutions"
@@ -114,6 +122,7 @@ export default function App() {
           />
           <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
           <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
+          <Route path="/resources/:slug" element={<PageWrapper><ResourceArticle /></PageWrapper>} />
           <Route path="/start-a-project" element={<PageWrapper><StartAProject /></PageWrapper>} />
           {/* Legacy URL — keeps old links/bookmarks working. */}
           <Route path="/contact" element={<Navigate to="/start-a-project" replace />} />

@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/nordiq/nordiq-showcase.jpg";
 import detail from "../assets/portfolio/nordiq/nordiq-detail.jpg";
@@ -44,6 +47,16 @@ const stats = [
 export default function CaseStudyNordiq() {
   return (
     <>
+      <Seo
+        title="Nordiq — Case Study"
+        description="A concept campaign film for an insulated tumbler brand — dramatizing one core promise, extreme heat and extreme cold, in a single shot."
+        path="/portfolio/nordiq"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Nordiq", path: "/portfolio/nordiq" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -203,6 +216,8 @@ export default function CaseStudyNordiq() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/nordiq" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -220,6 +235,9 @@ export default function CaseStudyNordiq() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/motion-design" variant="ghost">
+                Explore Motion Design →
               </Button>
             </div>
           </motion.div>

@@ -1,0 +1,8 @@
+# OAB Creative — robots.txt
+# Confirm the production domain in src/seo/config.ts (SITE_URL) and update
+# the Sitemap line below to match before launch.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.oabcreative.com/sitemap.xml

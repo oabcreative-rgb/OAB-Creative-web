@@ -4,6 +4,8 @@ import SectionHeading from "../components/SectionHeading";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
 import LazyScene3D from "../three/LazyScene3D";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import founderPhoto from "../assets/founder-portrait.jpg";
 import styles from "./About.module.css";
 
@@ -58,6 +60,12 @@ const tagVariants = {
 export default function About() {
   return (
     <>
+      <Seo
+        title="About"
+        description="OAB Creative is a global creative studio helping ambitious businesses build trust, look premium and grow through strategic branding, websites and motion design."
+        path="/about"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }])}
+      />
       <section className={`${styles.pageHero} dark-section`}>
         <LazyScene3D
           scene={AboutHeroScene}

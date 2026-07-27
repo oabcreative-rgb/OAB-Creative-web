@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/alts/alts-brand-showcase.jpg";
 import dnaFlyer from "../assets/portfolio/alts/alts-dna-flyer.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudyALTS() {
   return (
     <>
+      <Seo
+        title="Affordable Lab & Testing Solutions — Case Study"
+        description="A full brand identity and campaign system for a local testing lab — built to make every flyer, sign and social post feel like the same trusted business."
+        path="/portfolio/affordable-lab-testing-solutions"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Affordable Lab & Testing Solutions", path: "/portfolio/affordable-lab-testing-solutions" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -170,6 +183,8 @@ export default function CaseStudyALTS() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/affordable-lab-testing-solutions" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -187,6 +202,9 @@ export default function CaseStudyALTS() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/digital-marketing" variant="ghost">
+                Explore Digital Marketing →
               </Button>
             </div>
           </motion.div>

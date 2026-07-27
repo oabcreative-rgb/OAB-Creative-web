@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/aurora/aurora-showcase.jpg";
 import detail from "../assets/portfolio/aurora/aurora-detail.jpg";
@@ -44,6 +47,16 @@ const stats = [
 export default function CaseStudyAurora() {
   return (
     <>
+      <Seo
+        title="Aurora — Case Study"
+        description="A cinematic launch film and campaign photography for an independent fragrance house — built to feel like an established luxury brand from day one."
+        path="/portfolio/aurora"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Aurora", path: "/portfolio/aurora" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -202,6 +215,8 @@ export default function CaseStudyAurora() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/aurora" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -219,6 +234,9 @@ export default function CaseStudyAurora() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/motion-design" variant="ghost">
+                Explore Motion Design →
               </Button>
             </div>
           </motion.div>

@@ -28,56 +28,132 @@
   right: -100px;
 }
 
-.list {
+.rows {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .row {
   display: grid;
-  gap: var(--space-3);
-  align-items: start;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  gap: var(--space-4);
+  align-items: center;
 }
 
-.icon {
-  width: 56px;
-  height: 56px;
+.visualLink {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.rowImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.visualLink:hover .rowImage {
+  transform: scale(1.04);
+}
+
+.rowGraphic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-dark);
+  overflow: hidden;
+}
+
+.rowGraphicGlyph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2.2);
+  opacity: 0.12;
+}
+
+.rowGraphicIcon {
+  position: relative;
+  z-index: 1;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rowGraphicIcon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.rowContent {
+  position: relative;
+}
+
+.rowIcon {
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
   background: var(--gradient-brand);
   color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  margin-bottom: var(--space-2);
 }
 
-.deliverList {
+.rowIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.rowContent h2 {
+  margin-bottom: 0.5rem;
+}
+
+.outcomeList {
   list-style: none;
-  margin: var(--space-2) 0 0;
+  margin: var(--space-2) 0 var(--space-3);
   padding: 0;
   display: grid;
   gap: 0.5rem;
 }
 
-.deliverList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+.outcomeList li {
+  position: relative;
+  padding-left: 1.25rem;
   font-size: 0.9375rem;
-  color: var(--color-text-muted);
+  font-weight: 500;
+  color: var(--color-text);
 }
 
-.check {
-  color: var(--color-primary);
-  flex-shrink: 0;
+.outcomeList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .row {
-    grid-template-columns: 56px 1fr;
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .rowReverse .visualLink {
+    order: 2;
   }
 }

@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/mirror/mirror-showcase.jpg";
 import brandSystem from "../assets/portfolio/mirror/mirror-brand-system.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudyMirror() {
   return (
     <>
+      <Seo
+        title="Mirror — Case Study"
+        description="A brand and website for a fintech startup launching in 2026 — built to feel calm and trustworthy in a category full of noise."
+        path="/portfolio/mirror"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Mirror", path: "/portfolio/mirror" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -174,6 +187,8 @@ export default function CaseStudyMirror() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/mirror" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -191,6 +206,9 @@ export default function CaseStudyMirror() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/website-design" variant="ghost">
+                Explore Website Design →
               </Button>
             </div>
           </motion.div>

@@ -1,0 +1,44 @@
+.body {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.body h2 {
+  margin-top: var(--space-5);
+  font-size: 1.5rem;
+}
+
+.body h3 {
+  margin-top: var(--space-4);
+  font-size: 1.1875rem;
+}
+
+.body p {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.body ul,
+.body ol {
+  margin: 0 0 var(--space-3);
+  padding-left: 1.375rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.body li {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.body blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-bg-alt);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--color-text);
+}

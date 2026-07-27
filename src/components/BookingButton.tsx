@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import BookingModal from "./BookingModal";
+import { trackEvent } from "../config/analytics";
 import styles from "./Button.module.css";
 
 interface BookingButtonProps {
@@ -29,6 +30,7 @@ export default function BookingButton({ children, variant = "primary", onOpen }:
         whileTap={{ scale: 0.97 }}
         onClick={() => {
           setOpen(true);
+          trackEvent("book_call_click", { path: window.location.pathname });
           onOpen?.();
         }}
       >

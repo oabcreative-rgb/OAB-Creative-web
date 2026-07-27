@@ -6,6 +6,8 @@ import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
 import PortfolioCard from "../components/PortfolioCard";
 import LazyScene3D from "../three/LazyScene3D";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { portfolioCategories, type PortfolioCategoryId } from "../data/portfolioData";
 import {
   IconIdentity,
@@ -68,6 +70,12 @@ const processSteps = [
 export default function Portfolio() {
   return (
     <>
+      <Seo
+        title="Portfolio"
+        description="Real brand identity, website, motion design and marketing campaign work from OAB Creative — see the quality behind the strategy before you start a project."
+        path="/portfolio"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Portfolio", path: "/portfolio" }])}
+      />
       <section className={`${styles.pageHero} dark-section`}>
         <LazyScene3D
           scene={PortfolioHeroScene}

@@ -4,6 +4,7 @@ import Button from "../Button";
 import BookingButton from "../BookingButton";
 import { IconArrowLeft, IconCheck } from "../icons";
 import { submitEnquiry } from "../../utils/submitEnquiry";
+import { trackEvent } from "../../config/analytics";
 import { INITIAL_ANSWERS, type EnquiryAnswers } from "./types";
 import {
   BUDGET_OPTIONS,
@@ -306,6 +307,7 @@ export default function EnquiryForm({ onStatusChange }: EnquiryFormProps) {
     setError(null);
 
     if (step < TOTAL_STEPS) {
+      if (step === 1) trackEvent("enquiry_form_start");
       setDirection(1);
       setStep((s) => s + 1);
       return;
@@ -326,6 +328,7 @@ export default function EnquiryForm({ onStatusChange }: EnquiryFormProps) {
     try {
       await submitEnquiry(answers);
       setStatus("success");
+      trackEvent("enquiry_form_complete");
     } catch {
       setStatus("error");
     }

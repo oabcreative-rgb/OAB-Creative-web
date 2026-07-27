@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/hadassah/hc-showcase.jpg";
 import brandPoster from "../assets/portfolio/hadassah/hc-brand-poster.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudyHadassah() {
   return (
     <>
+      <Seo
+        title="Hadassah Care Supplies — Case Study"
+        description="A brand built from zero for a new mother-and-baby care business — ready to launch with a logo, packaging and a full campaign on opening day."
+        path="/portfolio/hadassah-care-supplies"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Hadassah Care Supplies", path: "/portfolio/hadassah-care-supplies" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -174,6 +187,8 @@ export default function CaseStudyHadassah() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/hadassah-care-supplies" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -191,6 +206,9 @@ export default function CaseStudyHadassah() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/brand-identity" variant="ghost">
+                Explore Brand Identity →
               </Button>
             </div>
           </motion.div>

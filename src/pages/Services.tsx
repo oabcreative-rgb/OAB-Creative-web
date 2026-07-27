@@ -1,79 +1,28 @@
 import { lazy } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import SectionHeading from "../components/SectionHeading";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
 import LazyScene3D from "../three/LazyScene3D";
-import { IconIdentity, IconMotion, IconWebsites, IconSystems } from "../components/icons";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
+import { SERVICES } from "../data/servicesData";
 import styles from "./Services.module.css";
 
 const ServicesHeroScene = lazy(() => import("../three/ServicesHeroScene"));
 
-const services = [
-  {
-    icon: <IconIdentity />,
-    title: "Brand Identity",
-    description:
-      "First impressions decide whether a prospect trusts you enough to keep listening. A complete identity system — logo, color, typography and guidelines — makes sure that first impression sells you before you even speak.",
-    deliverables: [
-      "Logo exploration & final logo system",
-      "Color palette and usage guidelines",
-      "Typography system and type scale",
-      "Iconography, patterns and shape language",
-      "Brand dos & don'ts for consistent usage",
-    ],
-  },
-  {
-    icon: <IconMotion />,
-    title: "Motion Design",
-    description:
-      "Attention is the new currency. Motion that moves — animated logos, UI interactions and social content — keeps prospects engaged long enough to convert, on any screen.",
-    deliverables: [
-      "Animated logo & brand intro stings",
-      "UI micro-interactions and transitions",
-      "Social and marketing motion assets",
-      "Presentation and pitch-deck animation",
-    ],
-  },
-  {
-    icon: <IconWebsites />,
-    title: "Websites",
-    description:
-      "Your website should work as hard as your best salesperson. Clear structure, fast performance and confident design turn visitors into inquiries around the clock.",
-    deliverables: [
-      "UX structure and content strategy",
-      "Responsive, accessible page design",
-      "Component-based build for easy updates",
-      "SEO-friendly, performance-first delivery",
-    ],
-  },
-  {
-    icon: <IconSystems />,
-    title: "Creative Systems",
-    description:
-      "Every inconsistent touchpoint chips away at trust. Scalable brand systems keep you consistent everywhere you show up, so customers recognize and choose you faster as you grow.",
-    deliverables: [
-      "Stationery & brand asset suite",
-      "Social media templates and guidelines",
-      "Presentation and proposal templates",
-      "Environmental and merchandise branding",
-    ],
-  },
-];
-
-const listVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
-};
-
-const listItemVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
-} as const;
-
 export default function Services() {
   return (
     <>
+      <Seo
+        title="Services"
+        description="Strategic branding, website design, motion design, product commercials, social media design, digital marketing and SEO — everything a growing business needs to build trust and attract more clients."
+        path="/services"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }])}
+      />
+
       <section className={`${styles.pageHero} dark-section`}>
         <LazyScene3D
           scene={ServicesHeroScene}
@@ -89,52 +38,61 @@ export default function Services() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <p className="eyebrow">Services</p>
-            <h1>Everything your brand needs to attract, convert and keep more clients.</h1>
+            <h1>Everything your business needs to build trust and attract more clients.</h1>
             <p>
-              Every engagement is built around one goal: turning your credibility into
-              consistent business growth — whether you need a full identity system or a single,
-              focused deliverable.
+              OAB Creative combines strategic branding, website design, motion design and digital
+              marketing into one consistent system — so every touchpoint helps a prospect trust
+              you a little more, and move a little closer to becoming a client.
             </p>
           </motion.div>
         </div>
       </section>
 
       <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div className={styles.list}>
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                className={styles.row}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-              >
-                <div className={styles.icon}>{service.icon}</div>
-                <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <motion.ul
-                    className={styles.deliverList}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={listVariants}
-                  >
-                    {service.deliverables.map((item) => (
-                      <motion.li key={item} variants={listItemVariants}>
-                        <span className={styles.check}>✓</span>
-                        {item}
-                      </motion.li>
-                    ))}
-                  </motion.ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className={`container ${styles.rows}`}>
+          {SERVICES.map((service, i) => (
+            <motion.div
+              key={service.slug}
+              className={`${styles.row} ${i % 2 === 1 ? styles.rowReverse : ""}`.trim()}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <Link to={`/services/${service.slug}`} className={styles.visualLink}>
+                {service.useGraphicHero || !service.heroImage ? (
+                  <div className={styles.rowGraphic} aria-hidden="true">
+                    <BrandGlyph tone="white" className={styles.rowGraphicGlyph} />
+                    <span className={styles.rowGraphicIcon}>{service.icon}</span>
+                  </div>
+                ) : (
+                  <img
+                    src={service.heroImage}
+                    alt={`${service.navTitle} work by OAB Creative`}
+                    className={styles.rowImage}
+                    loading="lazy"
+                  />
+                )}
+              </Link>
+              <div className={styles.rowContent}>
+                <span className={styles.rowIcon}>{service.icon}</span>
+                <h2>{service.navTitle}</h2>
+                <p>{service.supportingStatement}</p>
+                <ul className={styles.outcomeList}>
+                  {service.benefits.slice(0, 3).map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
+                <Button to={`/services/${service.slug}`} variant="ghost">
+                  Explore {service.navTitle} →
+                </Button>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
+
+      <TestimonialSection />
 
       <section className="section bg-mesh-alt">
         <div className="container">

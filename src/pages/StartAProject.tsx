@@ -3,8 +3,11 @@ import { motion } from "motion/react";
 import BrandGlyph from "../components/BrandGlyph";
 import BookingButton from "../components/BookingButton";
 import EnquiryForm, { type SubmitStatus } from "../components/EnquiryForm/EnquiryForm";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
 import LazyScene3D from "../three/LazyScene3D";
-import { usePageMeta } from "../hooks/usePageMeta";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
+import { trackEvent } from "../config/analytics";
 import {
   IconMail,
   IconInstagram,
@@ -61,13 +64,14 @@ const contactMethods = [
 export default function StartAProject() {
   const [formStatus, setFormStatus] = useState<SubmitStatus>("idle");
 
-  usePageMeta(
-    "Start a Project — OAB Creative",
-    "Tell us about your project in a few quick steps, or book a discovery call directly with OAB Creative."
-  );
-
   return (
     <>
+      <Seo
+        title="Start a Project"
+        description="Tell us about your project in a few quick steps, or book a discovery call directly with OAB Creative."
+        path="/start-a-project"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Start a Project", path: "/start-a-project" }])}
+      />
       <section className={`${styles.pageHero} dark-section`}>
         <LazyScene3D
           scene={ContactHeroScene}
@@ -122,6 +126,8 @@ export default function StartAProject() {
         </div>
       </section>
 
+      <TestimonialSection background="" />
+
       <section className={`section ${styles.contactStrip}`}>
         <div className="container">
           <p className={styles.contactStripLabel}>Or reach the studio directly</p>
@@ -134,6 +140,7 @@ export default function StartAProject() {
                   rel={href.startsWith("http") ? "noreferrer" : undefined}
                   className={styles.contactStripItem}
                   aria-label={comingSoon ? `${label} (coming soon)` : `${label}: ${value}`}
+                  onClick={() => label === "Email" && trackEvent("email_click")}
                 >
                   <Icon />
                   <span>{comingSoon ? `${label} · Coming Soon` : value}</span>

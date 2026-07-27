@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/swiftdrop/sd-showcase.jpg";
 import brandIdentity from "../assets/portfolio/swiftdrop/sd-brand-identity.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudySwiftDrop() {
   return (
     <>
+      <Seo
+        title="SwiftDrop — Case Study"
+        description="A full brand system for a delivery and logistics company — built to feel consistent across a fleet of vans, a courier team, and a customer-facing app."
+        path="/portfolio/swiftdrop"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "SwiftDrop", path: "/portfolio/swiftdrop" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -174,6 +187,8 @@ export default function CaseStudySwiftDrop() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/swiftdrop" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -191,6 +206,9 @@ export default function CaseStudySwiftDrop() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/brand-identity" variant="ghost">
+                Explore Brand Identity →
               </Button>
             </div>
           </motion.div>

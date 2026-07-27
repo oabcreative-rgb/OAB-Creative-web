@@ -1,0 +1,30 @@
+{
+  "_comment": "Hand-maintained list of indexable routes for sitemap generation. Add a path here whenever a new indexable page/route is added to src/App.tsx. Draft resource articles (see src/data/resources/articles.ts) are intentionally excluded until their status is 'published'.",
+  "routes": [
+    { "path": "/", "priority": 1.0, "changefreq": "weekly" },
+    { "path": "/services", "priority": 0.9, "changefreq": "monthly" },
+    { "path": "/services/brand-identity", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/website-design", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/motion-design", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/product-commercials", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/social-media-design", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/digital-marketing", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/services/seo", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/industries/med-spa-website-design", "priority": 0.7, "changefreq": "monthly" },
+    { "path": "/portfolio", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/portfolio/affordable-lab-testing-solutions", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/hadassah-care-supplies", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/mirror", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/swiftdrop", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/abundance-of-flow", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/yum-indulgence", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/audio-transcription-studio", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/alts-website", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/aurora", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/lumora", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/portfolio/nordiq", "priority": 0.6, "changefreq": "yearly" },
+    { "path": "/about", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/resources", "priority": 0.7, "changefreq": "weekly" },
+    { "path": "/start-a-project", "priority": 0.9, "changefreq": "monthly" }
+  ]
+}

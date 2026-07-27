@@ -6,7 +6,11 @@ import SectionHeading from "../components/SectionHeading";
 import ServiceCard from "../components/ServiceCard";
 import StatCard from "../components/StatCard";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
 import LazyScene3D from "../three/LazyScene3D";
+import Seo from "../seo/Seo";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from "../seo/config";
+import { organizationSchema, websiteSchema } from "../seo/schema";
 import {
   IconIdentity,
   IconMotion,
@@ -84,6 +88,13 @@ const values = [
 export default function Home() {
   return (
     <>
+      <Seo
+        title={DEFAULT_TITLE}
+        rawTitle
+        description={DEFAULT_DESCRIPTION}
+        path="/"
+        jsonLd={[organizationSchema(), websiteSchema()]}
+      />
       <section className={`${styles.hero} dark-section`}>
         <LazyScene3D
           scene={HeroBrandScene}
@@ -97,18 +108,16 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1>Turn More Visitors Into Paying Clients.</h1>
+            <h1>We help businesses look professional, build trust and attract more customers.</h1>
             <p>
-              We help ambitious businesses attract more clients through strategic branding,
-              high-converting websites, and premium motion design.
+              OAB Creative delivers strategic branding, high-converting websites, premium motion
+              design and digital marketing solutions for ambitious businesses.
             </p>
             <div className={styles.heroActions}>
               <Button to="/start-a-project" variant="primary">
                 Start a Project
               </Button>
-              <Button to="/portfolio#motion-design" variant="secondary">
-                View Motion Portfolio
-              </Button>
+              <BookingButton variant="secondary">Book a Discovery Call</BookingButton>
             </div>
           </motion.div>
 
@@ -223,6 +232,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <TestimonialSection />
 
       <section className="section">
         <div className="container">

@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import BrandGlyph from "../components/BrandGlyph";
+import TestimonialSection from "../components/Testimonials/TestimonialSection";
+import Seo from "../seo/Seo";
+import { breadcrumbSchema } from "../seo/schema";
 import { IconArrowLeft, IconStar, IconUsers, IconTarget } from "../components/icons";
 import showcase from "../assets/portfolio/at/at-showcase.jpg";
 import brandBoard from "../assets/portfolio/at/at-brand-board.jpg";
@@ -45,6 +48,16 @@ const stats = [
 export default function CaseStudyAT() {
   return (
     <>
+      <Seo
+        title="Audio Transcription Studio — Case Study"
+        description="A full brand and campaign system for a professional transcription studio — built to feel accurate and trustworthy from the office wall to the next social post."
+        path="/portfolio/audio-transcription-studio"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: "Audio Transcription Studio", path: "/portfolio/audio-transcription-studio" },
+        ])}
+      />
       <section className={`${styles.hero} dark-section`}>
         <BrandGlyph tone="cyan" className={styles.heroGlyph} />
         <div className={`container ${styles.heroContent}`}>
@@ -174,6 +187,8 @@ export default function CaseStudyAT() {
         </div>
       </section>
 
+      <TestimonialSection caseStudyLink="/portfolio/audio-transcription-studio" background="" />
+
       <section className="section">
         <div className="container">
           <motion.div
@@ -191,6 +206,9 @@ export default function CaseStudyAT() {
               </Button>
               <Button to="/portfolio" variant="secondary">
                 See More Work
+              </Button>
+              <Button to="/services/social-media-design" variant="ghost">
+                Explore Social Media Design →
               </Button>
             </div>
           </motion.div>
