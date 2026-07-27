@@ -25,6 +25,11 @@
     { "path": "/portfolio/nordiq", "priority": 0.6, "changefreq": "yearly" },
     { "path": "/about", "priority": 0.6, "changefreq": "monthly" },
     { "path": "/resources", "priority": 0.7, "changefreq": "weekly" },
+    { "path": "/resources/med-spa-website-design-consultation-bookings", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/resources/med-spa-website-mistakes-that-reduce-trust", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/resources/what-every-med-spa-homepage-should-include", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/resources/how-branding-helps-aesthetic-clinics-look-premium", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/resources/med-spa-website-redesign-checklist", "priority": 0.6, "changefreq": "monthly" },
     { "path": "/start-a-project", "priority": 0.9, "changefreq": "monthly" }
   ]
 }

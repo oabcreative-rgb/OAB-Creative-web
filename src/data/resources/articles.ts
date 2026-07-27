@@ -5,10 +5,12 @@ import type { Article } from "./types";
  * ARTICLES — the Resources index and /resources/:slug route pick it up
  * automatically, no other code changes needed.
  *
- * All five med spa articles below are marked status: "draft". They were
- * written as part of the initial SEO content cluster and are ready for
- * your review — flip `status` to "published" once you're happy with the
- * copy, and the sitemap/index/robots handling updates automatically.
+ * The five med spa articles below are part of the initial SEO content
+ * cluster. All five are `status: "published"`. To unpublish one, flip its
+ * `status` back to "draft" — the sitemap/index/robots handling updates
+ * automatically. Note: published article routes must also be added to
+ * scripts/sitemap-routes.json (the sitemap generator reads a separate,
+ * hand-maintained manifest rather than importing this file directly).
  */
 export const ARTICLES: Article[] = [
   {
@@ -36,15 +38,21 @@ export const ARTICLES: Article[] = [
         type: "list",
         items: [
           "A visible, consistent \"Book a Consultation\" call to action on every page — not buried in a menu",
-          "A booking flow that doesn't force a phone call as the only option",
+          "Multiple ways to get in touch — not just a phone number that only works during business hours",
           "Clear next steps immediately after someone submits a form (what happens, and when)",
           "No unnecessary form fields that add friction before a first conversation",
         ],
       },
+      {
+        type: "cta",
+        text: "A booking flow this deliberate rarely happens by accident — it's usually the result of a website built around one specific goal instead of a general template.",
+        linkLabel: "See how our website design process works",
+        href: "/services/website-design",
+      },
       { type: "heading", level: 2, text: "Show real proof, not just claims" },
       {
         type: "paragraph",
-        text: "Photography quality does more work on a med spa website than almost any other design decision. Clean, well-lit photography of the space, the team and (where compliant and consented to) real results builds more trust than any amount of marketing copy. If strong photography isn't available yet, a calmer, more restrained design with honest copy will build more trust than stock imagery that looks generic or, worse, slightly dishonest.",
+        text: "Photography quality does more work on a med spa website than almost any other design decision. Clean, well-lit photography of the space, the team and (where compliant and consented to) real results builds more trust than any amount of marketing copy. If strong photography isn't available yet, a calmer, more restrained design with honest copy will build more trust than stock imagery that looks generic or, worse, actively misleading.",
       },
       { type: "heading", level: 2, text: "Design for the mobile visitor first" },
       {
@@ -66,7 +74,7 @@ export const ARTICLES: Article[] = [
       "med-spa-website-mistakes-that-reduce-trust",
       "what-every-med-spa-homepage-should-include",
     ],
-    status: "draft",
+    status: "published",
     tags: ["med spa", "website design", "conversion"],
   },
   {
@@ -118,6 +126,12 @@ export const ARTICLES: Article[] = [
         type: "paragraph",
         text: "Most of these issues can be addressed incrementally — better photography, a clearer booking flow, an updated qualifications section — without a complete website overhaul. The goal is simply to make sure the website reflects the same level of care the practice already delivers in person.",
       },
+      {
+        type: "cta",
+        text: "If you're not sure which of these apply to your own site, a short conversation is usually faster than guessing.",
+        linkLabel: "Book a Discovery Call",
+        booking: true,
+      },
     ],
     authorName: "Amule Emmanuel",
     authorRole: "Founder & Creative Director",
@@ -128,7 +142,7 @@ export const ARTICLES: Article[] = [
       "med-spa-website-design-consultation-bookings",
       "med-spa-website-redesign-checklist",
     ],
-    status: "draft",
+    status: "published",
     tags: ["med spa", "website design", "trust"],
   },
   {
@@ -138,7 +152,7 @@ export const ARTICLES: Article[] = [
     searchIntent: "med spa homepage essentials",
     excerpt: "A practical breakdown of the sections a med spa homepage needs to build trust and guide visitors toward booking.",
     intro:
-      "The homepage carries more weight than any other page on a med spa website — it's usually the first (and sometimes only) page a visitor sees before deciding whether to explore further or leave. Here's what that page needs to include to do its job well.",
+      "The homepage carries more weight than any other page on a med spa website — it's usually the first, and sometimes only, page a visitor sees before deciding whether to explore further or leave. Miss one of the sections below and the gap tends to show up as a quiet drop-off, not an obvious complaint: visitors just leave without booking, and it's rarely clear why.",
     body: [
       { type: "heading", level: 2, text: "A clear opening statement" },
       {
@@ -158,7 +172,13 @@ export const ARTICLES: Article[] = [
       { type: "heading", level: 2, text: "Real photography of the space and team" },
       {
         type: "paragraph",
-        text: "Even a handful of high-quality photos of the physical space and the people who work there does more to build comfort than a page full of icons and stock imagery.",
+        text: "Even a handful of high-quality photos of the physical space and the people who work there does more to build comfort than a page full of icons and stock imagery. On the homepage specifically, this photography earns its place early — near the top, close to the opening statement — rather than being saved for an \"About\" page most visitors never reach.",
+      },
+      {
+        type: "cta",
+        text: "Getting this sequence right — what appears first, what earns a scroll, what leads to the booking button — is most of what separates a homepage that converts from one that just exists.",
+        linkLabel: "See how our website design process works",
+        href: "/services/website-design",
       },
       { type: "heading", level: 2, text: "Credibility markers" },
       {
@@ -190,7 +210,7 @@ export const ARTICLES: Article[] = [
       "med-spa-website-design-consultation-bookings",
       "how-branding-helps-aesthetic-clinics-look-premium",
     ],
-    status: "draft",
+    status: "published",
     tags: ["med spa", "homepage", "website design"],
   },
   {
@@ -227,6 +247,12 @@ export const ARTICLES: Article[] = [
         type: "paragraph",
         text: "For most clinics, the highest-impact starting point is a clear identity system — logo, color palette, typography and basic usage guidelines — that everything else (website, social templates, signage) can be built from. It doesn't need to happen all at once, but it does need a clear foundation to stay consistent as the practice grows.",
       },
+      {
+        type: "cta",
+        text: "That foundation is exactly what a brand identity engagement is built to deliver — a system, not just a logo.",
+        linkLabel: "Explore our brand identity service",
+        href: "/services/brand-identity",
+      },
     ],
     authorName: "Amule Emmanuel",
     authorRole: "Founder & Creative Director",
@@ -237,7 +263,7 @@ export const ARTICLES: Article[] = [
       "what-every-med-spa-homepage-should-include",
       "med-spa-website-redesign-checklist",
     ],
-    status: "draft",
+    status: "published",
     tags: ["med spa", "branding", "aesthetic clinics"],
   },
   {
@@ -247,7 +273,7 @@ export const ARTICLES: Article[] = [
     searchIntent: "med spa website redesign checklist",
     excerpt: "A practical checklist to work through before, during and after a med spa website redesign.",
     intro:
-      "A website redesign is a meaningful investment of time and budget, and it's easy to lose track of the fundamentals in the middle of choosing colors and layouts. This checklist covers what actually matters, organized by stage.",
+      "A website redesign is a meaningful investment of time and budget, and it's easy to lose track of the fundamentals in the middle of choosing colors and layouts. Most of the redesigns that underdeliver aren't missing a good designer — they're missing this groundwork. Work through it stage by stage and the design decisions get considerably easier.",
     body: [
       { type: "heading", level: 2, text: "Before you start" },
       {
@@ -259,6 +285,12 @@ export const ARTICLES: Article[] = [
           "Collect or plan for high-quality photography of your space, team and (with consent) results",
           "Note any compliance or advertising requirements specific to your region and treatments",
         ],
+      },
+      {
+        type: "cta",
+        text: "Working through this list on your own is a solid start — if you'd rather have someone scope it with you, that's exactly what a first conversation is for.",
+        linkLabel: "Start a Project",
+        href: "/start-a-project",
       },
       { type: "heading", level: 2, text: "During design and content" },
       {
@@ -308,7 +340,7 @@ export const ARTICLES: Article[] = [
       "med-spa-website-mistakes-that-reduce-trust",
       "what-every-med-spa-homepage-should-include",
     ],
-    status: "draft",
+    status: "published",
     tags: ["med spa", "website design", "checklist"],
   },
 ];

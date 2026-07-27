@@ -6,6 +6,7 @@ import SectionHeading from "../components/SectionHeading";
 import BrandGlyph from "../components/BrandGlyph";
 import TestimonialSection from "../components/Testimonials/TestimonialSection";
 import Seo from "../seo/Seo";
+import { absoluteUrl } from "../seo/config";
 import { breadcrumbSchema, serviceSchema } from "../seo/schema";
 import { IconCheck, IconArrowLeft } from "../components/icons";
 import { getServiceBySlug } from "../data/servicesData";
@@ -20,6 +21,7 @@ export default function ServicePage() {
   }
 
   const path = `/services/${service.slug}`;
+  const absoluteHeroImage = service.heroImage ? absoluteUrl(service.heroImage) : undefined;
 
   return (
     <>
@@ -28,9 +30,9 @@ export default function ServicePage() {
         rawTitle
         description={service.seoDescription}
         path={path}
-        image={service.heroImage}
+        image={absoluteHeroImage}
         jsonLd={[
-          serviceSchema({ name: service.navTitle, description: service.seoDescription, path, image: service.heroImage }),
+          serviceSchema({ name: service.navTitle, description: service.seoDescription, path, image: absoluteHeroImage }),
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Services", path: "/services" },

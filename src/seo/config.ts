@@ -15,8 +15,8 @@ export const DEFAULT_TITLE = "OAB Creative | Branding, Website Design & Motion D
 export const DEFAULT_DESCRIPTION =
   "OAB Creative helps businesses build trust, stand out and grow through strategic branding, professional websites, motion design and digital marketing.";
 
-/** Falls back to /og-default.jpg — see ASSET_CHECKLIST.md for the spec. */
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
+/** Default social preview image — public/og-default.png, 1729x910 (~1.9:1, matches the OG spec ratio). */
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
 
 export const TWITTER_HANDLE = "@oabcreative";
 

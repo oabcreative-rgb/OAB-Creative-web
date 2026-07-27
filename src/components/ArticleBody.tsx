@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import type { ContentBlock } from "../data/resources/types";
+import InlineBookingLink from "./InlineBookingLink";
 import styles from "./ArticleBody.module.css";
 
 export default function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
@@ -24,6 +26,21 @@ export default function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
           }
           case "quote":
             return <blockquote key={i}>{block.text}</blockquote>;
+          case "cta":
+            return (
+              <div key={i} className={styles.cta}>
+                <p>
+                  {block.text}{" "}
+                  {block.booking ? (
+                    <InlineBookingLink className={styles.ctaLink}>{block.linkLabel} →</InlineBookingLink>
+                  ) : (
+                    <Link to={block.href ?? "/"} className={styles.ctaLink}>
+                      {block.linkLabel} →
+                    </Link>
+                  )}
+                </p>
+              </div>
+            );
           default:
             return null;
         }
