@@ -19,6 +19,16 @@ import lumoraCover from "../assets/portfolio/lumora/lumora-showcase.jpg";
 import lumoraMotion from "../assets/portfolio/lumora/lumora-motion.mp4";
 import nordiqCover from "../assets/portfolio/nordiq/nordiq-showcase.jpg";
 import nordiqMotion from "../assets/portfolio/nordiq/nordiq-motion.mp4";
+import sabocartCover from "../assets/portfolio/sabocart/sabocart-cover.jpg";
+import accEngineeringCover from "../assets/portfolio/acc-engineering/acc-engineering-cover.jpg";
+import ssEarthworxCover from "../assets/portfolio/ss-earthworx/ss-earthworx-cover.jpg";
+import perezAccountingCover from "../assets/portfolio/perez-accounting/perez-accounting-cover.jpg";
+import alohaCoastalNotaryCover from "../assets/portfolio/aloha-coastal-notary/aloha-coastal-notary-cover.jpg";
+import thunderTeamCover from "../assets/portfolio/thunder-team/thunder-team-cover.jpg";
+import seniorHelpCover from "../assets/portfolio/senior-help/senior-help-cover.jpg";
+import djremaxKohSamuiCover from "../assets/portfolio/djremax-koh-samui/djremax-koh-samui-cover.jpg";
+import vicenteWeddingNotaryCover from "../assets/portfolio/vicente-wedding-notary/vicente-wedding-notary-cover.jpg";
+import caragaPropertiesCover from "../assets/portfolio/caraga-properties/caraga-properties-cover.jpg";
 
 export type PortfolioCategoryId =
   | "brand-identity"
@@ -58,6 +68,26 @@ export const portfolioCategories: PortfolioCategory[] = [
         image: abundanceOfFlowCover,
         link: "/portfolio/abundance-of-flow",
       },
+      {
+        title: "Thunder Team",
+        image: thunderTeamCover,
+      },
+      {
+        title: "Senior Help",
+        image: seniorHelpCover,
+      },
+      {
+        title: "DJRE/MAX Koh Samui",
+        image: djremaxKohSamuiCover,
+      },
+      {
+        title: "Vicente Wedding Notary",
+        image: vicenteWeddingNotaryCover,
+      },
+      {
+        title: "Caraga Affordable Properties",
+        image: caragaPropertiesCover,
+      },
     ],
   },
   {
@@ -74,6 +104,26 @@ export const portfolioCategories: PortfolioCategory[] = [
         title: "Affordable Lab & Testing Solutions",
         image: altsWebCover,
         link: "/portfolio/alts-website",
+      },
+      {
+        title: "SaboCart Transportation & Logistics",
+        image: sabocartCover,
+      },
+      {
+        title: "ACC & Engineering",
+        image: accEngineeringCover,
+      },
+      {
+        title: "S&S Earthworx",
+        image: ssEarthworxCover,
+      },
+      {
+        title: "Perez Accounting and Tax",
+        image: perezAccountingCover,
+      },
+      {
+        title: "Aloha Coastal Notary",
+        image: alohaCoastalNotaryCover,
       },
       {},
     ],
