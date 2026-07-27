@@ -6,7 +6,7 @@
  * sitemap entry and structured-data URL in the site is built from this
  * single value, so updating it here is enough.
  */
-export const SITE_URL = "https://www.oabcreative.com";
+export const SITE_URL = "https://www.oabcreativestudio.com";
 
 export const SITE_NAME = "OAB Creative";
 

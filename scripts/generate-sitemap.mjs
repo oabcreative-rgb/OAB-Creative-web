@@ -9,7 +9,7 @@ import { dirname, resolve } from "node:path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Keep in sync with src/seo/config.ts SITE_URL.
-const SITE_URL = "https://www.oabcreative.com";
+const SITE_URL = "https://www.oabcreativestudio.com";
 
 const { routes } = JSON.parse(readFileSync(resolve(__dirname, "sitemap-routes.json"), "utf-8"));
 

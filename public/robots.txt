@@ -5,4 +5,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.oabcreative.com/sitemap.xml
+Sitemap: https://www.oabcreativestudio.com/sitemap.xml
