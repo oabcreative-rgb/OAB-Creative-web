@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>OAB Creative — Private Asset Review (local only)</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --blue: #1565D8;
+    --cyan: #22D3EE;
+    --border: #E2E8F0;
+    --bg-alt: #F5F7FA;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: var(--navy);
+  }
+  .banner {
+    background: #7a1f1f;
+    color: #fff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+  }
+  header {
+    padding: 2rem 1.5rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  header h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }
+  header p { color: #475569; max-width: 720px; }
+  .filterBar {
+    max-width: 1200px;
+    margin: 0 auto 1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .filterBar button {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--navy);
+  }
+  .filterBar button.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+  main { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+  section { margin-bottom: 2.5rem; }
+  h2 { font-size: 1.125rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+  .count { color: #64748b; font-weight: 400; font-size: 0.875rem; }
+  .sectionNote { color: #475569; font-size: 0.875rem; max-width: 700px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 14px -8px rgba(11,31,58,0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  .card[data-status="approved"] { outline: 3px solid #16a34a; }
+  .card[data-status="rejected"] { outline: 3px solid #dc2626; opacity: 0.55; }
+  .thumbWrap { position: relative; aspect-ratio: 4/3; background: var(--bg-alt); }
+  .thumbWrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .videoBadge {
+    position: absolute; bottom: 6px; left: 6px;
+    background: rgba(11,31,58,0.85); color: #fff;
+    font-size: 0.6875rem; font-weight: 700;
+    padding: 0.2rem 0.5rem; border-radius: 999px;
+  }
+  .body { padding: 0.9rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .filename { font-size: 0.6875rem; color: #94a3b8; word-break: break-all; margin: 0; }
+  .client { font-size: 1rem; margin: 0.15rem 0; }
+  .reviewer { font-size: 0.8125rem; color: var(--blue); margin: 0; }
+  .category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--blue); font-weight: 700; margin: 0; }
+  .placement { font-size: 0.8125rem; margin: 0; color: #334155; }
+  .confidence { font-size: 0.8125rem; margin: 0; }
+  .badge { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-weight: 700; font-size: 0.75rem; }
+  .conf-high { background: #dcfce7; color: #166534; }
+  .conf-medium { background: #fef9c3; color: #854d0e; }
+  .conf-low { background: #fee2e2; color: #991b1b; }
+  .privacy { font-size: 0.75rem; color: #7a1f1f; margin: 0.25rem 0; }
+  .notes { font-size: 0.8125rem; color: #475569; margin: 0; }
+  .approvalRow { margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .approvalRow label { font-size: 0.75rem; font-weight: 600; }
+  .approvalSelect { font-size: 0.8125rem; padding: 0.25rem 0.4rem; border-radius: 6px; border: 1px solid var(--border); }
+  footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.8125rem; }
+</style>
+</head>
+<body>
+  <div class="banner">PRIVATE — LOCAL REVIEW ONLY. Not part of the production build, not deployed, not linked from the live site.</div>
+  <header>
+    <h1>OAB Creative — Asset Shortlist for Review</h1>
+    <p>
+      19 shortlisted portfolio assets + 1 shortlisted testimonial, selected from the 127-file inventory
+      as clearly OAB-made, clearly tied to a visible brand, free of private/sensitive information, and
+      high enough quality for the site. Every item defaults to <strong>needs-review</strong> — nothing
+      has been approved. Use the dropdown on each card to set your decision; this page does not save
+      automatically (it's a static file), so note your decisions back in
+      <code>docs/oab-asset-inventory.md</code> or tell Claude directly which IDs to approve.
+    </p>
+  </header>
+  <div class="filterBar">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="Website Design">Website Design</button>
+    <button data-filter="Brand Identity">Brand Identity</button>
+    <button data-filter="Product Commercials">Motion / Product Commercials</button>
+    <button data-filter="Social Media Design">Social Media Design</button>
+    <button data-filter="Testimonial">Testimonials</button>
+  </div>
+  <main>
+    
+    <section>
+      <h2>Website Design <span class="count">(6)</span></h2>
+      <div class="grid">
+        
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-01.jpg" alt="amule emmanuel (1080 x 1080 px)_20240516_151928_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">amule emmanuel (1080 x 1080 px)_20240516_151928_0000.jpg</p>
+        <p class="client"><strong>SaboCart Transportation &amp; Logistics LLC</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design service page hero / portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — no people in the design</p>
+        <p class="notes">Before/after square post. Maroon redesign, truck/plane/globe graphic.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-01">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-02.jpg" alt="CONSTRUCTION WEBSITES REDESIGN 3.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">CONSTRUCTION WEBSITES REDESIGN 3.jpg</p>
+        <p class="client"><strong>ACC &amp; Engineering</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design portfolio banner — dominant desktop preview</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — no people in the design</p>
+        <p class="notes">Full desktop browser screenshot of the delivered site.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-02">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-03.jpg" alt="amule emmanuel (1080 x 1080 px)_20240527_130655_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">amule emmanuel (1080 x 1080 px)_20240527_130655_0000.jpg</p>
+        <p class="client"><strong>S&amp;S Earthworx LLC</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design service page hero / portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — no people, construction equipment photos only</p>
+        <p class="notes">Before/after square post.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-03">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-04.jpg" alt="amule emmanuel (1080 x 1080 px)_20240521_174107_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">amule emmanuel (1080 x 1080 px)_20240521_174107_0000.jpg</p>
+        <p class="client"><strong>Perez Accounting and Tax</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design service page hero / portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — hands and objects only, no faces</p>
+        <p class="notes">Before/after square post.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-04">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-05.jpg" alt="amule emmanuel (1080 x 1080 px)_20240523_183446_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">amule emmanuel (1080 x 1080 px)_20240523_183446_0000.jpg</p>
+        <p class="client"><strong>Aloha Coastal Notary Inc.</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design service page hero / portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — hands and notary stamp only, no faces</p>
+        <p class="notes">Before/after square post.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-05">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Website Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/wd-06.jpg" alt="Website redesign laptop view.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Website redesign laptop view.jpg</p>
+        <p class="client"><strong>Elite Labs &amp; Logistics</strong></p>
+        
+        <p class="category">Website Design</p>
+        <p class="placement">Website Design portfolio banner — dominant desktop preview</p>
+        <p class="confidence">Confidence: <span class="badge conf-medium">medium</span></p>
+        <p class="privacy">Contains a person (lab-coat model) — appears to be licensed stock photography typical of website template imagery, not a private individual's personal photo. Confirm stock license before public use.</p>
+        <p class="notes">Full desktop browser screenshot of the delivered site.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="wd-06">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Brand Identity <span class="count">(6)</span></h2>
+      <div class="grid">
+        
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-01.jpg" alt="Thunder team 3D Logo Mockup.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Thunder team 3D Logo Mockup.jpg</p>
+        <p class="client"><strong>Thunder Team</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity service page hero / portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">3D chrome/metallic logo mockup — strongest single presentation of this brand.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-01">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-02.jpg" alt="received_1161624304832959.jpeg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">received_1161624304832959.jpeg</p>
+        <p class="client"><strong>Senior Help</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">Embossed paper logo mockup.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-02">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-03.jpg" alt="susan_s Home care.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">susan_s Home care.jpg</p>
+        <p class="client"><strong>Susan's Home Care Inc.</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — 'with Susan Stewart' is the business's own intentional branding text, not exposed personal data</p>
+        <p class="notes">Flat logo.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-03">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-04.jpg" alt="1711658497285.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">1711658497285.jpg</p>
+        <p class="client"><strong>DJRE/MAX Koh Samui</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">Paper-texture logo mockup.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-04">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-05.jpg" alt="Vicente Wedding Notary logo.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Vicente Wedding Notary logo.jpg</p>
+        <p class="client"><strong>Vicente Wedding Notary</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">Flat logo, dark background.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-05">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Brand Identity" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/bi-06.jpg" alt="Logo Mock-up on Paper Free PSD.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Logo Mock-up on Paper Free PSD.jpg</p>
+        <p class="client"><strong>Caraga Affordable Properties</strong></p>
+        
+        <p class="category">Brand Identity</p>
+        <p class="placement">Brand Identity portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — agent name 'Clarence Aboloc' is the business's own intentional branding text</p>
+        <p class="notes">Paper logo mockup.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="bi-06">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Product Commercials <span class="count">(1)</span></h2>
+      <div class="grid">
+        
+    <article class="card" data-category="Product Commercials" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/md-01.jpg" alt="lv_0_20250810234500.mp4" loading="lazy" />
+        <span class="videoBadge">VIDEO — frame preview</span>
+      </div>
+      <div class="body">
+        <p class="filename">lv_0_20250810234500.mp4</p>
+        <p class="client"><strong>Affordable Lab &amp; Testing Solutions</strong></p>
+        
+        <p class="category">Product Commercials</p>
+        <p class="placement">ALTS case study supporting video / service page background loop</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — exterior/building b-roll, no identifiable faces in focus</p>
+        <p class="notes">Clean b-roll. This folder is otherwise thin on finished motion work — Aurora/LUMORA/Nordiq (already live on the site) remain the strongest motion assets overall.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="md-01">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Social Media Design <span class="count">(6)</span></h2>
+      <div class="grid">
+        
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-01.jpg" alt="Affordable DNA testing carousel_20240805_135113_0007.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Affordable DNA testing carousel_20240805_135113_0007.jpg</p>
+        <p class="client"><strong>Affordable Lab &amp; Testing Solutions</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">Social Media Design service page gallery</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">Carousel outro slide with booking CTA + QR code.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-01">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-02.jpg" alt="Navy and Orange Modern Notary Services Instagram Post_20240723_153554_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Navy and Orange Modern Notary Services Instagram Post_20240723_153554_0000.jpg</p>
+        <p class="client"><strong>Affordable Lab &amp; Testing Solutions</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">Social Media Design service page gallery</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None</p>
+        <p class="notes">Notary Services promo post.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-02">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-03.jpg" alt="Red Modern Anti Drugs Day Instagram Post_20240715_145328_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Red Modern Anti Drugs Day Instagram Post_20240715_145328_0000.jpg</p>
+        <p class="client"><strong>Affordable Lab &amp; Testing Solutions</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">Social Media Design service page gallery</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — illustrated graphic, no photos</p>
+        <p class="notes">'Stay Away From Drugs' awareness illustration.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-03">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-04.jpg" alt="RIGHTSOUND SCHOOL _20240715_151055_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">RIGHTSOUND SCHOOL _20240715_151055_0000.jpg</p>
+        <p class="client"><strong>Rightsound School of Music</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">Social Media Design / Graphic Design portfolio card</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">Contains the business's own public phone number and address — intentional on a public flyer, not a leak. Stock photo of an instructor with children (not identified as real clients).</p>
+        <p class="notes">Summer class promo flyer.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-04">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-05.jpg" alt="IMG_20240729_171240_968.webp" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">IMG_20240729_171240_968.webp</p>
+        <p class="client"><strong>Angel's Touch Lab Solutions</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">New portfolio project candidate — pending client confirmation</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">None — graphic only, no photos</p>
+        <p class="notes">'What We Offer' services graphic.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-05">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-category="Social Media Design" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/sm-06.jpg" alt="Affordable DNA testing carousel_20240805_135111_0000.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">Affordable DNA testing carousel_20240805_135111_0000.jpg</p>
+        <p class="client"><strong>Affordable Lab &amp; Testing Solutions</strong></p>
+        
+        <p class="category">Social Media Design</p>
+        <p class="placement">Social Media Design service page gallery</p>
+        <p class="confidence">Confidence: <span class="badge conf-medium">medium</span></p>
+        <p class="privacy">Contains a person (professional woman in blazer) — appears to be licensed stock photography, not a real staff member or client. Confirm stock license before public use.</p>
+        <p class="notes">Carousel intro slide, '6 Ways to Unlock the Secrets of Your DNA'.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="sm-06">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+      </div>
+    </section>
+    
+    <section>
+      <h2>Testimonials — shortlisted <span class="count">(1)</span></h2>
+      <p class="sectionNote">Only testimonials with a clear client identity, company, full quote text and no visible private information are shortlisted here. Everything else from the folder stays needs-review pending your confirmation — see the full inventory doc.</p>
+      <div class="grid">
+        
+    <article class="card" data-category="Testimonial" data-status="needs-review">
+      <div class="thumbWrap">
+        <img src="thumbs/t-01.jpg" alt="2_20240731_170634_0001.jpg" loading="lazy" />
+        
+      </div>
+      <div class="body">
+        <p class="filename">2_20240731_170634_0001.jpg</p>
+        <p class="client"><strong>Angel's Touch Lab Solutions</strong></p>
+        <p class="reviewer">Reviewer: Dave Jean-Baptiste</p>
+        <p class="category">Testimonial</p>
+        <p class="placement">Testimonial section — written testimonial with photo</p>
+        <p class="confidence">Confidence: <span class="badge conf-high">high</span></p>
+        <p class="privacy">Reviewer's name and photo come from his own public Google review — already public information he chose to post. Recommend cropping to keep only the review text, name, star rating and photo; drop the phone-mockup/QR/map chrome around it.</p>
+        <p class="notes">The only testimonial in the folder where client identity, company, full quote text, and absence of private info are all clearly confirmed from the asset itself.</p>
+        <div class="approvalRow">
+          <label>Approval status:</label>
+          <select class="approvalSelect" data-id="t-01">
+            <option value="needs-review" selected>needs-review</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+      </div>
+    </article>
+      </div>
+    </section>
+  </main>
+  <footer>Generated locally from "OAB works and testimonial". Source folder untouched.</footer>
+  <script>
+    const buttons = document.querySelectorAll(".filterBar button");
+    const cards = document.querySelectorAll(".card");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const f = btn.dataset.filter;
+        cards.forEach((c) => {
+          c.style.display = f === "all" || c.dataset.category === f ? "" : "none";
+        });
+      });
+    });
+    document.querySelectorAll(".approvalSelect").forEach((sel) => {
+      sel.addEventListener("change", (e) => {
+        e.target.closest(".card").dataset.status = e.target.value;
+      });
+    });
+  </script>
+</body>
+</html>
