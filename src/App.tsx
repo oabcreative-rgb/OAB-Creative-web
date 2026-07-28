@@ -23,6 +23,7 @@ import About from "./pages/About";
 import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/ResourceArticle";
 import StartAProject from "./pages/StartAProject";
+import NotFound from "./pages/NotFound";
 
 function PageWrapper({ children }: { children: ReactNode }) {
   const { hash } = useLocation();
@@ -126,6 +127,7 @@ export default function App() {
           <Route path="/start-a-project" element={<PageWrapper><StartAProject /></PageWrapper>} />
           {/* Legacy URL — keeps old links/bookmarks working. */}
           <Route path="/contact" element={<Navigate to="/start-a-project" replace />} />
+          <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
         </Routes>
       </AnimatePresence>
       <Footer />
