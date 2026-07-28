@@ -52,12 +52,10 @@ const contactMethods = [
     icon: IconPinterest,
   },
   {
-    // TODO: swap in the live LinkedIn company URL once the page is ready.
     label: "LinkedIn",
-    value: "OAB Creative",
-    href: "#",
+    value: "Amule Emmanuel",
+    href: "https://www.linkedin.com/in/emmanuel-amule-62860b413",
     icon: IconLinkedIn,
-    comingSoon: true,
   },
 ];
 
@@ -132,18 +130,18 @@ export default function StartAProject() {
         <div className="container">
           <p className={styles.contactStripLabel}>Or reach the studio directly</p>
           <ul className={styles.contactStripList}>
-            {contactMethods.map(({ label, value, href, icon: Icon, comingSoon }) => (
+            {contactMethods.map(({ label, value, href, icon: Icon }) => (
               <li key={label}>
                 <a
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noreferrer" : undefined}
                   className={styles.contactStripItem}
-                  aria-label={comingSoon ? `${label} (coming soon)` : `${label}: ${value}`}
+                  aria-label={`${label}: ${value}`}
                   onClick={() => label === "Email" && trackEvent("email_click")}
                 >
                   <Icon />
-                  <span>{comingSoon ? `${label} · Coming Soon` : value}</span>
+                  <span>{value}</span>
                 </a>
               </li>
             ))}

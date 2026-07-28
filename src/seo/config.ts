@@ -28,6 +28,7 @@ export const SOCIAL_PROFILES = [
   "https://www.facebook.com/share/1BVLUMy1GZ/",
   "https://www.tiktok.com/@oabcreative",
   "https://pin.it/1hf85LhDA",
+  "https://www.linkedin.com/in/emmanuel-amule-62860b413",
 ];
 
 /**

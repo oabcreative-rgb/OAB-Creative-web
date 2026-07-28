@@ -31,9 +31,8 @@ const socials = [
     icon: IconPinterest,
   },
   {
-    // TODO: swap in the live LinkedIn company URL once the page is ready.
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/emmanuel-amule-62860b413",
     icon: IconLinkedIn,
   },
 ];
